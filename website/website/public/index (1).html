@@ -1,9 +1,18 @@
 <html>
 <head>
-	<link rel = "stylesheet" href = "WowSoCSS.css" type = "text/css" media = "screen">
+  <link rel = "stylesheet" href = "WowSoCSS.css" type = "text/css" media = "screen">
+
   <title> DOGE DOGE DOGE! </title>
 </head>
 <body>
+
+<div id = "header">
+  <div id = "banner"></div>
+</div>
+
+<!--<a href="http://www.facebook.com">
+  <img src = "http://global3.memecdn.com/Ninja-Dog_o_95376.jpg" />
+</a> -->
 
 <div id="fb-root"></div>
 <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
@@ -27,8 +36,7 @@
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
-      pictureChanger();
-	  
+      testAPI();
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -63,8 +71,8 @@
 
   // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
-  function pictureChanger() {
-    //console.log('Welcome!  Fetching your information.... ');
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
 	
     FB.api('/me', function(response) {
       //alert(response.name);
@@ -76,8 +84,6 @@
    });	
   }
   
-  function 
-  
 </script>
 
 <!--
@@ -86,18 +92,15 @@
 
   Learn more about options for the login button plugin:
   /docs/reference/plugins/login/ -->
-  
-  <div id = "header">
-  <div id = "banner"></div>
-	</div>
-
 
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-<h1> Welcome to Doge World! </h1>
-<img id="foo" class="switch" src = "http://images.wikia.com/creepypasta/images/0/01/DOGE.png" alt="something">
 
+<img id="foo" class="switch" src = "http://images.wikia.com/creepypasta/images/0/01/DOGE.png" alt="something">
+<h1> Welcome to Doge World! </h1>
 <img src = "http://discoverygc.com/wiki/images/thumb/3/34/Doge_(1).jpg/264px-Doge_(1).jpg" />
-</br>
+<a href="http://www.facebook.com">
+  <img src = "http://global3.memecdn.com/Ninja-Dog_o_95376.jpg" />
+</a>
 
 
 </body>
