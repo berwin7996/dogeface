@@ -1,6 +1,12 @@
+from sys import argv, exit
 from SimpleCV import *
 from random import Random
 from itertools import product
+from collections import Counter
+import string
+import Image as Img
+import ImageFont as ImgFont
+import ImageDraw as ImgDraw
 
 def distance(p1, p2):
     return ((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)**(0.5)
@@ -29,48 +35,114 @@ def apply_phrases(drawlayer, phrases, locations):
     r = Random()
     for phrase, loc in zip(phrases, locations):
         # set font to comic sans
-        drawlayer.setFontSize(50)
+        font = ImgFont.truetype('comic.ttf', 40)
         color = (r.randint(0, 255), r.randint(0, 255), r.randint(0, 255))
-        drawlayer.text(phrase, loc, color)
+        drawlayer.text(loc, phrase, color, font=font)
     return drawlayer
+
+def process_statuses(statuses):
+    r = Random()
+    wordcount = Counter()
+    exclude = set(string.punctuation)
+    trash_words = ['the', 'a', 'be', 'is', 'an', 'of', 'and', 'to', 'in', 'that', 'i', 'not', 'on', 'with', 'have', 'it', 'for', 'he', 'she', 'as', 'you', 'do', 'did', 'at', 'this']
+    for status in statuses:
+        for word in status.split(' '):
+            word_mod = (''.join(ch for ch in word if ch not in exclude)).lower()
+            if word not in trash_words:
+                wordcount[word_mod] += 1
+    most_common = wordcount.most_common(10)
+    longest = sorted(wordcount.keys(), reverse=True, key=lambda s: len(s))[:10]
+    random_words = wordcount.keys()[:]
+    r.shuffle(random_words)
+    print list(most_common), longest
+    phrases = []
+    for i in range(r.randint(5,10)):
+        phrase = ""
+        roll = r.randint(0,10)
+        if roll < 1:
+            # wow
+            phrase = "wow"
+        elif roll < 4:
+            # random words
+            index = r.randint(0, len(random_words)-1)
+            phrase = random_words[index]
+            del random_words[index]
+        elif roll < 6:
+            # longest
+            index = r.randint(0, len(longest)-1)
+            phrase = longest[index]
+            del longest[index]
+        elif roll < 8:
+            # most common
+            index = r.randint(0, len(most_common)-1)
+            phrase = str(most_common[index][0])
+            del most_common[index]
+        elif roll == 10:
+            phrase = 'wow'
+        
+        roll2 = r.randint(0, 5)
+        if roll2 < 1:
+            phrase = 'so ' + phrase
+        elif roll2 < 2:
+            phrase = 'such ' + phrase
+        elif roll2 < 3:
+            phrase = 'wow ' + phrase
+
+        roll3 = r.randint(0,5)
+        if roll3 == 0:
+            phrase += ' wow!'
+
+        roll4 = r.randint(0, 4)
+        if roll4 < 2:
+            phrase += '!'
+        elif roll4 < 3:
+            phrase += '!!'
+        elif roll4 < 4:
+            phrase += '?!'
+
+        phrases.append(phrase)
+    return phrases
+
+
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
 if __name__ == '__main__':
-    doge = Image('doge.png')
-    doge_mask = Image('doge_mask.png')
-    doge_mask = doge_mask.binarize().invert()
-    doge_size = (doge.width, doge.height)
-    faces_image = Image('multiple_faces.jpg')
-    faces_image = faces_image.resize(w=1000)
-    image_size = (faces_image.width, faces_image.height)
-    faces_image_mask = Image(image_size)
-    doge_image = Image(image_size)
-    faces = faces_image.findHaarFeatures('/home/porter/src/berwin7996/dogeface/test/haarcascade_frontalface_alt.xml')
+    if len(argv) < 2:
+        print 'first arg must be a url'
+        exit(12);
+    url = argv[1]
+    r = Random()
+    statuses = ["4:20 make a wish",
+                """Higgeldy Piggeldy blue china eyes 
+                My love comes to me in the fairest disguise
+                We skips and we totters
+                I seize her hind trotters
+                And enter her porcelain thighs.""",
+                "Homework and how I feel while doing it (also what I do while doing it) ",
+                "liquid`doge",
+                "life of lively to live to life of full life thx to shield battery"]
+    doge = Img.open('doge.png')
+    faces_image = Img.open('multiple_faces.jpg').convert('RGBA')
+    final_image = Img.new('RGBA', faces_image.size)
+    final_image.paste(faces_image, faces_image.getbbox())
+    cv_faces_image = Image('multiple_faces.jpg')
+    cv_image_size = (cv_faces_image.width, cv_faces_image.height)
+    faces = cv_faces_image.findHaarFeatures('/home/porter/src/berwin7996/dogeface/test/haarcascade_frontalface_alt.xml')
     print 'Multiple Face Test'
     for f in faces:
         face_size = (f.width(), f.height())
         print 'face found at', f.coordinates(), 'length=%d, width=%d' % face_size
-        doge_scaled = doge.resize(*face_size)
-        doge_mask_scaled = doge_mask.resize(*face_size)
-        # masked_scaled_doge = doge_scaled.applyBinaryMask(doge_mask_scaled)
-        faces_image_mask_layer = faces_image_mask.getDrawingLayer()
-        faces_image_mask_layer.blit(doge_mask_scaled, f.topLeftCorner())
-        faces_image_mask.applyLayers()
+        doge_scaled = doge.resize(face_size, Img.ANTIALIAS)
+        if r.randint(0,1) == 0:
+            doge_scaled = doge_scaled.transpose(Img.FLIP_LEFT_RIGHT)
+        x, y = f.topLeftCorner()
+        final_image.paste(doge_scaled, (x, y, x+f.width(), y+f.height()), mask=doge_scaled)
+    draw = ImgDraw.Draw(final_image)
+    # phrases = ['wow','wow','such picture','so color','wow doge face','such doge','very fluff']
+    phrases = process_statuses(statuses)
+    points = evenly_distributed_points(final_image.size, len(phrases), 100)
+    apply_phrases(draw, phrases, points)
 
-        doge_image_layer = doge_image.getDrawingLayer()
-        doge_image_layer.blit(doge_scaled.applyBinaryMask(doge_mask_scaled), f.topLeftCorner())
-        doge_image.applyLayers()
-        
-        faces_layer = faces_image.getDrawingLayer()
-        faces_layer.blit(doge_scaled, f.topLeftCorner())
-        faces_image.applyLayers()
-    phrases_layer = faces_image.getDrawingLayer()
-    phrases = ['wow','wow','such picture','so color','wow doge face','such doge','very fluff']
-    points = evenly_distributed_points(image_size, len(phrases), 100)
-    apply_phrases(phrases_layer, phrases, points)
-    faces_image.applyLayers()
-
-    final_image = (faces_image)
     final_image.save("boxed_faces_image.jpg")
