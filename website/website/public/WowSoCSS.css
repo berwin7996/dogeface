@@ -22,6 +22,18 @@ h1{
   text-align: center;
 }
 
+span2{
+  height: 50px;
+  width: 50px;
+  border-color: #FF9900;
+  background-color: #FFFF00;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  margin: auto;
+  text-align: center;
+}
+
 a:link, a:visited{
   text-decoration: none;
   color: #000;
