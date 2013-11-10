@@ -124,6 +124,15 @@
 
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472381076209009";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <img src ="http://static.tumblr.com/878sjua/lodmw1d6f/suchbanner.png" />
 
   <div id = "header">
@@ -144,13 +153,7 @@
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 <br><center>Share: 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=472381076209009";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-share-button" data-href="http://doge.parseapp.com/" data-type="button_count"></div>
 <script src="https://apis.google.com/js/plusone.js"></script>
 <g:plus action="share"></g:plus>
 <a href="http://www.tumblr.com/share" title="Share on Tumblr" 
