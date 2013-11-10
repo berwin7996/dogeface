@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "doge"
+        }, 
+        "doge": {
+            "applicationId": "CRVUnLncdVCQuSrY550vhzLjRW9M9zTUIPwaMhbw", 
+            "masterKey": "MRxrsBCRQc49OPbUFoHQy6npwGmfMxEsTIjXXtiZ"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.12"
+    }
+}
