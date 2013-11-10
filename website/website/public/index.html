@@ -157,11 +157,20 @@
 <br><center>Share: <br>
 <div id="fb-root"></div>
 <div class="fb-share-button" data-href="http://doge.parseapp.com/" data-type="button_count"></div>
-<script src="https://apis.google.com/js/plusone.js"></script>
-<g:plus action="share"></g:plus>
+<!-- Place this tag where you want the share button to render. -->
+<div class="g-plus" data-action="share" data-height="15"></div>
+
 <a href="http://www.tumblr.com/share" title="Share on Tumblr" 
    style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; 
    background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;">Share on Tumblr</a>
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 </center>
 <br>
 <span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>
