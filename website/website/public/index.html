@@ -28,6 +28,7 @@
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
       pictureChanger();
+	  consoleStatus();
 	  
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -76,7 +77,15 @@
    });	
   }
   
-  //function 
+  function consoleStatus() {
+	  FB.api('/me/feed?limit=5', function(response) 
+	   {
+		  for (var i=0; i<response.data.length; i++)
+		  { 
+			 console.log(i + " : " + response.data[i].message);
+		  }
+	   });
+   }
   
 </script>
 
