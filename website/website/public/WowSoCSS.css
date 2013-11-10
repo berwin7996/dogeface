@@ -4,7 +4,7 @@ WOW SO CSS
 */
 
 body{
-  font-family: Comic Sans, sans serif;
+  font-family: Comic Sans MS, sans serif;
   font-size: 16 px;
   background-color: white;
   text-align: center;
@@ -30,7 +30,7 @@ td a{
   display: inline-block;
   height: 100%;
   width: 100%;
-  top: 50%;
+  top: 100%;
 }
 
 td a:hover{
