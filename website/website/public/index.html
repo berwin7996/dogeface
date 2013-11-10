@@ -3,14 +3,9 @@
   <title> DOGE DOGE DOGE! </title>
 </head>
 <body>
-<img src = "http://images.wikia.com/creepypasta/images/0/01/DOGE.png">
-<h1> Welcome to Doge World! </h1>
-<img src = "http://discoverygc.com/wiki/images/thumb/3/34/Doge_(1).jpg/264px-Doge_(1).jpg" />
-<a href="http://www.facebook.com">
-  <img src = "http://global3.memecdn.com/Ninja-Dog_o_95376.jpg" />
-</a>
 
 <div id="fb-root"></div>
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 <script>
   window.fbAsyncInit = function() {
   FB.init({
@@ -52,7 +47,9 @@
   });
   };
 
-  var myJSONObject;
+  
+  
+  
   // Load the SDK asynchronously
   (function(d){
    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -66,13 +63,17 @@
   // This testAPI() function is only called in those cases. 
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
+	
     FB.api('/me', function(response) {
-      alert(response.name);
-	  myJSONObject = response;
-	  alert(myJSONObject.url);
+      //alert(response.name);
+	  //alert(response.id);
+	  //var myJSONObject = JSON.parse(response);
+	  var id = response.id;
+      foo.src = "https://graph.facebook.com/" + id + "/picture?width=200&height=200";
 	  
-    });
+   });	
   }
+  
 </script>
 
 <!--
@@ -84,6 +85,12 @@
 
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 
+<img id="foo" class="switch" src = "http://images.wikia.com/creepypasta/images/0/01/DOGE.png" alt="something">
+<h1> Welcome to Doge World! </h1>
+<img src = "http://discoverygc.com/wiki/images/thumb/3/34/Doge_(1).jpg/264px-Doge_(1).jpg" />
+<a href="http://www.facebook.com">
+  <img src = "http://global3.memecdn.com/Ninja-Dog_o_95376.jpg" />
+</a>
 
 
 </body>
