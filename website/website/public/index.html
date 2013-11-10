@@ -28,7 +28,7 @@
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
       pictureChanger();
-	  consoleStatus();
+	  //consoleStatus();
 	  
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -49,6 +49,12 @@
     }
   });
   };
+  function fbLogout() {
+        FB.logout(function (response) {
+            //Do what ever you want here when logged out like reloading the page
+            window.location.reload();
+        });
+    }
 
   // Load the SDK asynchronously
   (function(d){
@@ -76,11 +82,13 @@
    });
 
 	FB.api('/me/statuses', function(response){
-		for(var i = 0; i < response.length; i++){
+	
+		for(var i = 0; i < response.data.length; i++){
 			statuses[i] = response.data[i].message;
-			//document.write(statuses[i] + "<br>");
-			alert(statuses[i]);
+			$("p").text($("p").text() + statuses[i] + " ");
+			//alert(statuses[i]);
 		}
+		
 	});
   }
   
@@ -134,6 +142,8 @@
 <img src = "http://discoverygc.com/wiki/images/thumb/3/34/Doge_(1).jpg/264px-Doge_(1).jpg"  height="300"/>
 </br>
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-
+<br>
+<span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>
+<p></p>
 </body>
 </html>
