@@ -13,6 +13,7 @@ body{
 h2{
   height: 50px;
   width: 100%;
+  top: 300px;
   border-color: #FFFF00;
   background-color: #FFEC8B;
   border-style: solid;
@@ -22,7 +23,28 @@ h2{
   text-align: center;
 }
 
-span2{
+td{
+  border: 1px solid #FFFF00;
+  height: 100%;
+  width: 60px;
+  position: center;
+}
+
+td a{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+td a:hover{
+  background-color: #FFF2B3;
+}
+
+/*span2{
   height: 50px;
   width: 50px;
   border-color: #FFFF00;
@@ -32,7 +54,7 @@ span2{
   border-radius: 5px;
   margin: auto;
   text-align: center;
-}
+}*/
 
 a:link, a:visited{
   text-decoration: none;
