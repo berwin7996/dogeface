@@ -13,8 +13,8 @@ body{
 h2{
   height: 50px;
   width: 100%;
-  border-color: #FF9900;
-  background-color: #FF6633;
+  border-color: #FFFF00;
+  background-color: #FFEC8B;
   border-style: solid;
   border-width: 2px;
   border-radius: 5px;
@@ -25,8 +25,8 @@ h2{
 span2{
   height: 50px;
   width: 50px;
-  border-color: #FF9900;
-  background-color: #FF6633;
+  border-color: #FFFF00;
+  background-color: #FFEC8B;
   border-style: solid;
   border-width: 2px;
   border-radius: 5px;
