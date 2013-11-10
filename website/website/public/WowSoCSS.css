@@ -1,0 +1,80 @@
+/*
+WOW SO CSS
+
+*/
+
+body{
+  font-family: Comic Sans MS, sans serif;
+  font-size: 16 px;
+  background-color: white;
+  text-align: center;
+}
+
+h2{
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+  border-color: #FFFF00;
+  background-color: #FFEC8B;
+  text-align: center;
+}
+
+td{
+  border: 1px solid #FFFF00;
+  height: 100%;
+  width: 60px;
+  position: center;
+}
+
+td a{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  top: 100%;
+}
+
+td a:hover{
+  background-color: #ffd700; /*#FFF2B3;*/
+}
+
+div {
+	border-radius: 5px;
+}
+
+
+
+/*span2{
+  height: 50px;
+  width: 50px;
+  border-color: #FFFF00;
+  background-color: #FFEC8B;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  margin: auto;
+  text-align: center;
+}*/
+
+a:link, a:visited{
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover, a:active{
+  text-decoration: none;
+  font-size: 18px;
+}
+
+header{
+  width: 100%;
+  background-color: #8B8970;
+  font-size: 18px;
+  box-shadow: inset 0 0 10px #4B4B4B;
+}
+
+/*banner{
+  background-image: url('http://static.tumblr.com/878sjua/dKumw1bie/suchbanner.png');
+  height: 50px;
+  top: 10 px;
+  right: 50%;
+}*/
