@@ -9,6 +9,7 @@
 <a href="http://www.facebook.com">
   <img src = "http://global3.memecdn.com/Ninja-Dog_o_95376.jpg" />
 </a>
+
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -51,6 +52,7 @@
   });
   };
 
+  var myJSONObject;
   // Load the SDK asynchronously
   (function(d){
    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -66,6 +68,9 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       alert(response.name);
+	  myJSONObject = response;
+	  alert(myJSONObject.url);
+	  
     });
   }
 </script>
@@ -78,5 +83,8 @@
   /docs/reference/plugins/login/ -->
 
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+
+
+
 </body>
 </html>
